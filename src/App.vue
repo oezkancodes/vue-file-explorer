@@ -1,11 +1,23 @@
 <template>
-  <div id="app">
-    <h1>App</h1>
-  </div>
+  <main
+    id="app"
+    class="min-h-screen flex justify-center items-center bg-center bg-cover"
+  >
+    <Explorer />
+  </main>
 </template>
 
 <script>
+  import Explorer from './components/Explorer.vue';
+
   export default {
+    components: { Explorer },
     name: 'App',
   };
 </script>
+
+<style scoped>
+  #app {
+    background-image: url('/background.jpg');
+  }
+</style>
