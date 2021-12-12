@@ -9,19 +9,22 @@
       >
         <div class="flex items-center space-x-1">
           <!-- Tabs -->
-          <HeaderTabItem label="Desktop" active />
-          <HeaderTabItem label="Downloads" />
+          <HeaderTabItem
+            v-for="tab in tabs"
+            :key="tab.label"
+            :tab="tab"
+          />
 
           <!-- Tab Dropdown -->
           <HeaderButton>
             <PlusIcon />
           </HeaderButton>
+          <HeaderButton>
+            <CollectionIcon />
+          </HeaderButton>
         </div>
 
         <div class="flex items-center space-x-1">
-          <HeaderButton>
-            <CollectionIcon class="w-5 h-5" />
-          </HeaderButton>
           <button
             class="px-3.5 py-2.5 hover:bg-gray-700 rounded-md transition duration-100 cursor-pointer"
           >
@@ -39,22 +42,24 @@
     <!-- Secondary Row -->
     <div class="space-x-1">
       <HeaderButton>
-        <ArrowLeftIcon class="w-5 h-5" />
+        <ArrowLeftIcon />
       </HeaderButton>
       <HeaderButton>
-        <ArrowRightIcon class="w-5 h-5" />
+        <ArrowRightIcon />
       </HeaderButton>
       <HeaderButton>
-        <ArrowUpIcon class="w-5 h-5" />
+        <ArrowUpIcon />
       </HeaderButton>
       <HeaderButton>
-        <RefreshIcon class="w-5 h-5" />
+        <RefreshIcon />
       </HeaderButton>
     </div>
   </header>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   import HeaderButton from './HeaderButton.vue';
   import HeaderTabItem from './HeaderTabItem.vue';
 
@@ -81,6 +86,10 @@
       MinusIcon,
       XIcon,
       CollectionIcon,
+    },
+
+    computed: {
+      ...mapGetters(['tabs', 'activeTab']),
     },
   };
 </script>

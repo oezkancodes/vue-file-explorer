@@ -1,29 +1,41 @@
 <template>
   <div
-    class="px-3 py-2 w-48 hover:bg-gray-700 hover:bg-opacity-50 rounded-md flex items-center justify-between group cursor-pointer transition duration-100"
-    :class="{ 'bg-gray-700': active }"
+    class="w-48 rounded-md flex items-center group cursor-pointer transition duration-100"
+    :class="[
+      { 'bg-gray-700': active },
+      { 'hover:bg-gray-700 hover:bg-opacity-50': !active },
+    ]"
   >
-    <div class="flex items-center space-x-2">
+    <div
+      class="px-3 py-2 flex items-center space-x-2 w-full"
+      @click="onClickTab"
+    >
       <!-- Icon -->
       <FolderIcon class="w-5 h-5" />
 
       <!-- Label -->
       <span class="text-xs">
-        <span v-if="label" v-text="label" />
-        <slot v-else name="default" />
+        <span v-text="tab.label" />
       </span>
     </div>
 
     <!-- Close Tab -->
-    <XIcon
-      class="w-4 h-4 opacity-0 group-hover:opacity-100 transition duration-100"
-    />
+    <div
+      v-if="tabs.length > 1"
+      class="p-2"
+      @click="onClickClose"
+    >
+      <XIcon
+        class="w-4 h-4 opacity-0 group-hover:opacity-100 transition duration-100"
+      />
+    </div>
   </div>
 </template>
 
 <script>
   import { XIcon } from '@vue-hero-icons/outline';
   import { FolderIcon } from '@vue-hero-icons/solid';
+  import { mapGetters } from 'vuex';
 
   export default {
     components: {
@@ -32,13 +44,40 @@
     },
 
     props: {
-      active: {
-        type: Boolean,
-        default: false,
+      tab: {
+        type: Object,
+        required: true,
       },
-      label: {
-        type: String,
-        default: 'Folder',
+    },
+
+    computed: {
+      ...mapGetters(['tabs', 'activeTab']),
+
+      index() {
+        return this.tabs.findIndex(
+          (tab) => tab.label === this.tab.label
+        );
+      },
+
+      active() {
+        return this.index === this.activeTab;
+      },
+    },
+
+    methods: {
+      onClickTab() {
+        const index = this.tabs.findIndex(
+          (tab) => tab.label === this.tab.label
+        );
+        this.$store.commit('SET_ACTIVE_TAB', index);
+      },
+
+      onClickClose() {
+        const tabs = this.tabs.filter(
+          (tab) => tab.label !== this.tab.label
+        );
+        this.$store.commit('SET_TABS', tabs);
+        this.$store.commit('SET_ACTIVE_TAB', 0);
       },
     },
   };

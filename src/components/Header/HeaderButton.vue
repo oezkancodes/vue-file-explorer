@@ -5,3 +5,9 @@
     <slot name="default" />
   </button>
 </template>
+
+<style scoped>
+  button svg {
+    @apply w-5 h-5;
+  }
+</style>
