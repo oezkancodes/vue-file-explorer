@@ -22,17 +22,23 @@
       return {
         items: [
           {
+            label: 'Home',
+            iconComponent: 'HomeIcon',
+            toView: 'home-view',
+          },
+          {
             label: 'Favourites',
             iconComponent: 'StarIcon',
-            folders: [
-              { label: 'Home' },
-              { label: 'Desktop' },
+            subItems: [
+              { label: 'Desktop', toView: 'desktop-view' },
             ],
           },
           {
             label: 'Cloud',
             iconComponent: 'CloudIcon',
-            folders: [{ label: 'OneDrive' }],
+            subItems: [
+              { label: 'OneDrive', toView: 'cloud-view' },
+            ],
           },
         ],
       };

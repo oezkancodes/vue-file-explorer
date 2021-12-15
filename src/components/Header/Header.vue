@@ -108,7 +108,7 @@
         this.$store.commit('SET_TAB', {
           uid: uuidv4(),
           label: 'Home',
-          folders: [],
+          view: 'home-view',
         });
       },
 

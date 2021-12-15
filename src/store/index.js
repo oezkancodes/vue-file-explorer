@@ -6,8 +6,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tabs: [
-      { uid: '9b1deb4d', label: 'Home', folders: [] },
-      { uid: '1b9d6bcd', label: 'OneDrive', folders: [] },
+      { uid: '9b1deb4d', label: 'Home', view: 'home-view' },
+      {
+        uid: '1b9d6bcd',
+        label: 'OneDrive',
+        view: 'cloud-view',
+      },
     ],
     activeTab: 0,
     minimized: false,
@@ -28,11 +32,19 @@ export default new Vuex.Store({
     },
     SET_TAB(state, tab) {
       state.tabs.push(tab);
+      state.activeTab = state.tabs.length - 1;
     },
     SET_MINIMIZED(state, bool) {
       state.minimized = bool;
     },
   },
 
-  actions: {},
+  actions: {
+    updateTab(context, { label, view }) {
+      context.state.tabs[context.state.activeTab].label =
+        label;
+      context.state.tabs[context.state.activeTab].view =
+        view;
+    },
+  },
 });

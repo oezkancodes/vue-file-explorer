@@ -1,15 +1,12 @@
 <template>
   <div>
     <button
-      ref="button"
+      ref="item"
       class="w-full px-3 py-2 rounded-md flex items-center space-x-2 justify-between text-xs hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70 transition duration-100"
       :class="{
         'bg-gray-500 bg-opacity-25 font-medium': active,
       }"
-      @click="
-        collapsed = !collapsed;
-        $refs.button.blur();
-      "
+      @click="onClickItem(item)"
     >
       <div class="flex items-center space-x-2">
         <component
@@ -20,6 +17,7 @@
       </div>
 
       <ChevronDownIcon
+        v-if="item.subItems"
         class="w-4 h-4 self-end"
         :class="{ 'transform rotate-180': !collapsed }"
       />
@@ -27,15 +25,17 @@
 
     <div v-if="!collapsed" class="">
       <button
-        v-for="folder in item.folders"
-        :key="folder.key"
-        class="w-full pl-8 pr-3 py-2 rounded-md flex items-center space-x-2 text-xs hover:bg-gray-500 hover:bg-opacity-25 transition duration-100"
+        v-for="(subItem, index) in item.subItems"
+        :key="subItem.key"
+        ref="subItem"
+        class="w-full pl-8 pr-3 py-2 rounded-md flex items-center space-x-2 text-xs hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70 transition duration-100"
         :class="{
           'bg-gray-500 bg-opacity-25 font-medium': active,
         }"
+        @click="onClickSubItem(subItem, index)"
       >
         <FolderIcon class="w-4 h-4" />
-        <span v-text="folder.label" />
+        <span v-text="subItem.label" />
       </button>
     </div>
   </div>
@@ -46,6 +46,7 @@
     StarIcon,
     CloudIcon,
     FolderIcon,
+    HomeIcon,
     ChevronDownIcon,
   } from '@vue-hero-icons/solid';
 
@@ -54,6 +55,7 @@
       StarIcon,
       CloudIcon,
       FolderIcon,
+      HomeIcon,
       ChevronDownIcon,
     },
 
@@ -72,6 +74,29 @@
       return {
         collapsed: false,
       };
+    },
+
+    methods: {
+      onClickItem(item) {
+        this.collapsed = !this.collapsed;
+        this.$refs.item.blur();
+        if (item.toView) {
+          this.$store.dispatch('updateTab', {
+            label: item.label,
+            view: item.toView,
+          });
+        }
+      },
+
+      onClickSubItem(item, index) {
+        this.$refs.subItem[index].blur();
+        if (item.toView) {
+          this.$store.dispatch('updateTab', {
+            label: item.label,
+            view: item.toView,
+          });
+        }
+      },
     },
   };
 </script>
