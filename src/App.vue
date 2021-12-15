@@ -1,7 +1,7 @@
 <template>
   <main
     id="app"
-    class="min-h-screen flex justify-center items-center bg-center bg-cover"
+    class="min-h-screen bg-gray-900 flex justify-center items-center bg-center bg-cover"
   >
     <Explorer />
   </main>
