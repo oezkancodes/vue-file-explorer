@@ -34,11 +34,13 @@
         <div class="flex items-center space-x-1">
           <button
             class="px-3.5 py-2.5 hover:bg-gray-700 rounded-md transition duration-100 cursor-pointer"
+            @click="onClickMinimize"
           >
             <MinusIcon class="w-5 h-5" />
           </button>
           <button
             class="px-3.5 py-2.5 hover:bg-red-500 rounded-md transition duration-100 cursor-pointer"
+            @click="onClickMinimize"
           >
             <XIcon class="w-5 h-5" />
           </button>
@@ -108,6 +110,10 @@
           label: 'Home',
           folders: [],
         });
+      },
+
+      onClickMinimize() {
+        this.$store.commit('SET_MINIMIZED', true);
       },
     },
   };

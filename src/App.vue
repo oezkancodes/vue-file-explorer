@@ -1,18 +1,20 @@
 <template>
   <main
     id="app"
-    class="min-h-screen bg-gray-900 flex justify-center items-center bg-center bg-cover"
+    class="min-h-screen bg-gray-900 flex justify-center items-center bg-center bg-cover overflow-hidden"
   >
     <Explorer />
+    <Dock />
   </main>
 </template>
 
 <script>
+  import Dock from './components/Dock.vue';
   import Explorer from './components/Explorer.vue';
 
   export default {
-    components: { Explorer },
     name: 'App',
+    components: { Explorer, Dock },
   };
 </script>
 

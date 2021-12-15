@@ -10,11 +10,13 @@ export default new Vuex.Store({
       { uid: '1b9d6bcd', label: 'OneDrive', folders: [] },
     ],
     activeTab: 0,
+    minimized: false,
   },
 
   getters: {
     tabs: (state) => state.tabs,
     activeTab: (state) => state.activeTab,
+    minimized: (state) => state.minimized,
   },
 
   mutations: {
@@ -26,6 +28,9 @@ export default new Vuex.Store({
     },
     SET_TAB(state, tab) {
       state.tabs.push(tab);
+    },
+    SET_MINIMIZED(state, bool) {
+      state.minimized = bool;
     },
   },
 
