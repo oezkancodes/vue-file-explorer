@@ -1,7 +1,11 @@
 <template>
   <button
-    class="p-2 hover:bg-gray-700 rounded-md transition duration-100"
-    @click="$emit('click')"
+    ref="button"
+    class="p-2 hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70 rounded-md transition duration-100"
+    @click="
+      $emit('click');
+      $refs.button.blur();
+    "
   >
     <slot name="default" />
   </button>
@@ -9,6 +13,6 @@
 
 <style scoped>
   button svg {
-    @apply w-5 h-5;
+    @apply w-4 h-4;
   }
 </style>

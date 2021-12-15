@@ -1,11 +1,15 @@
 <template>
   <div>
     <button
-      class="w-full px-3 py-2 rounded-md flex items-center space-x-2 justify-between text-xs hover:bg-gray-500 hover:bg-opacity-25 transition duration-100"
+      ref="button"
+      class="w-full px-3 py-2 rounded-md flex items-center space-x-2 justify-between text-xs hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70 transition duration-100"
       :class="{
         'bg-gray-500 bg-opacity-25 font-medium': active,
       }"
-      @click="collapsed = !collapsed"
+      @click="
+        collapsed = !collapsed;
+        $refs.button.blur();
+      "
     >
       <div class="flex items-center space-x-2">
         <component

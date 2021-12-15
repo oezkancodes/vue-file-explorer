@@ -82,8 +82,8 @@
     RefreshIcon,
     MinusIcon,
     XIcon,
+    CollectionIcon,
   } from '@vue-hero-icons/outline';
-  import { CollectionIcon } from '@vue-hero-icons/solid';
 
   export default {
     components: {

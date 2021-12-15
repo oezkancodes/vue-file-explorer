@@ -1,7 +1,7 @@
 <template>
   <main
     id="app"
-    class="min-h-screen bg-gray-900 flex justify-center items-center bg-center bg-cover overflow-hidden"
+    class="min-h-screen bg-gray-900 flex justify-center items-center bg-center bg-cover overflow-hidden select-none"
   >
     <Explorer />
     <Dock />

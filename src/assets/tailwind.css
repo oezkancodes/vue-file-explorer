@@ -5,7 +5,3 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-
-body button {
-  @apply outline-none focus:ring-2 focus:ring-white;
-}

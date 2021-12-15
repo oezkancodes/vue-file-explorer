@@ -1,6 +1,6 @@
 <template>
   <div
-    class="z-50 text-gray-50 rounded-md border border-gray-700 shadow-xl overflow-hidden w-full max-w-4xl select-none grid grid-cols-1 transition-all duration-200"
+    class="z-50 text-gray-50 rounded-md border border-gray-700 shadow-xl overflow-hidden w-full max-w-4xl grid grid-cols-1 transition-all duration-200"
     :class="{
       'transform translate-y-full scale-x-0 opacity-0 invisible':
         minimized,
