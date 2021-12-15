@@ -1,5 +1,13 @@
-<template><div class="p-2 w-full"></div></template>
+<template>
+  <div class="w-full">
+    <MainContentHeader />
+  </div>
+</template>
 
 <script>
-  export default {};
+  import MainContentHeader from './MainContentHeader.vue';
+
+  export default {
+    components: { MainContentHeader },
+  };
 </script>
