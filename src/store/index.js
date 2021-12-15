@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tabs: [
-      { label: 'Home', folders: [] },
-      { label: 'OneDrive', folders: [] },
+      { uid: '9b1deb4d', label: 'Home', folders: [] },
+      { uid: '1b9d6bcd', label: 'OneDrive', folders: [] },
     ],
     activeTab: 0,
   },
@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
     SET_TABS(state, tabs) {
       state.tabs = tabs;
+    },
+    SET_TAB(state, tab) {
+      state.tabs.push(tab);
     },
   },
 

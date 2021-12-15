@@ -7,18 +7,25 @@
       <div
         class="flex items-center justify-between space-x-2"
       >
-        <div class="flex items-center space-x-1">
+        <div
+          class="flex items-center space-x-1 flex-nowrap"
+          style="max-width: 80%"
+        >
           <!-- Tabs -->
-          <HeaderTabItem
-            v-for="tab in tabs"
-            :key="tab.label"
-            :tab="tab"
-          />
+          <div class="flex space-x-1 overflow-x-auto">
+            <HeaderTabItem
+              v-for="tab in tabs"
+              :key="tab.uid"
+              :tab="tab"
+            />
+          </div>
 
-          <!-- Tab Dropdown -->
-          <HeaderButton>
+          <!-- Add Tab Button -->
+          <HeaderButton @click="onClickAddTab">
             <PlusIcon />
           </HeaderButton>
+
+          <!-- Tab Dropdown -->
           <HeaderButton>
             <CollectionIcon />
           </HeaderButton>
@@ -58,6 +65,8 @@
 </template>
 
 <script>
+  import { v4 as uuidv4 } from 'uuid';
+
   import { mapGetters } from 'vuex';
 
   import HeaderButton from './HeaderButton.vue';
@@ -90,6 +99,16 @@
 
     computed: {
       ...mapGetters(['tabs', 'activeTab']),
+    },
+
+    methods: {
+      onClickAddTab() {
+        this.$store.commit('SET_TAB', {
+          uid: uuidv4(),
+          label: 'Home',
+          folders: [],
+        });
+      },
     },
   };
 </script>

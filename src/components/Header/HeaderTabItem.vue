@@ -55,7 +55,7 @@
 
       index() {
         return this.tabs.findIndex(
-          (tab) => tab.label === this.tab.label
+          (tab) => tab.uid === this.tab.uid
         );
       },
 
@@ -67,14 +67,14 @@
     methods: {
       onClickTab() {
         const index = this.tabs.findIndex(
-          (tab) => tab.label === this.tab.label
+          (tab) => tab.uid === this.tab.uid
         );
         this.$store.commit('SET_ACTIVE_TAB', index);
       },
 
       onClickClose() {
         const tabs = this.tabs.filter(
-          (tab) => tab.label !== this.tab.label
+          (tab) => tab.uid !== this.tab.uid
         );
         this.$store.commit('SET_TABS', tabs);
         this.$store.commit('SET_ACTIVE_TAB', 0);
