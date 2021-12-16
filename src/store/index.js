@@ -20,6 +20,7 @@ export default new Vuex.Store({
   getters: {
     tabs: (state) => state.tabs,
     activeTab: (state) => state.activeTab,
+    currentTab: (state) => state.tabs[state.activeTab],
     minimized: (state) => state.minimized,
   },
 
