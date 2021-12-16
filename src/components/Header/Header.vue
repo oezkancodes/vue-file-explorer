@@ -72,16 +72,7 @@
       </section>
 
       <div class="relative">
-        <input
-          ref="searchInput"
-          class="pl-3 pr-8 bg-gray-700 focus:bg-gray-900 placeholder-gray-400 border-b border-gray-400 rounded-md h-8 transition duration-100 outline-none"
-          type="input"
-          placeholder="Search"
-        />
-        <SearchIcon
-          class="absolute right-3 top-2 w-4 h-4"
-          @click="$refs.searchInput.focus()"
-        />
+        <header-search />
       </div>
     </div>
   </header>
@@ -92,10 +83,9 @@
 
   import { mapGetters } from 'vuex';
 
-  import { SearchIcon } from '@vue-hero-icons/outline';
-
   import HeaderButton from './HeaderButton.vue';
   import HeaderTabItem from './HeaderTabItem.vue';
+  import HeaderSearch from './HeaderSearch.vue';
   import HeaderTabManagement from './HeaderTabManagement.vue';
 
   import {
@@ -119,7 +109,7 @@
       RefreshIcon,
       MinusIcon,
       XIcon,
-      SearchIcon,
+      HeaderSearch,
       HeaderTabManagement,
     },
 
