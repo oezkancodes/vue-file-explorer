@@ -25,19 +25,30 @@
             label: 'Home',
             iconComponent: 'HomeIcon',
             toView: 'home-view',
+            icon: '/folder.png',
           },
           {
             label: 'Favourites',
             iconComponent: 'StarIcon',
+            icon: '/star.png',
             subItems: [
-              { label: 'Desktop', toView: 'desktop-view' },
+              {
+                label: 'Desktop',
+                toView: 'desktop-view',
+                icon: '/folder.png',
+              },
             ],
           },
           {
             label: 'Cloud',
+            icon: '/cloud.png',
             iconComponent: 'CloudIcon',
             subItems: [
-              { label: 'OneDrive', toView: 'cloud-view' },
+              {
+                label: 'OneDrive',
+                toView: 'cloud-view',
+                icon: '/folder.png',
+              },
             ],
           },
         ],

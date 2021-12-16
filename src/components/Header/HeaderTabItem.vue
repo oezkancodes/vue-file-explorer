@@ -11,7 +11,7 @@
       @click="onClickTab"
     >
       <!-- Icon -->
-      <FolderIcon class="w-5 h-5" />
+      <img class="h-3.5 w-3.5" src="/folder.png" />
 
       <!-- Label -->
       <span class="text-xs">
@@ -34,12 +34,10 @@
 
 <script>
   import { XIcon } from '@vue-hero-icons/outline';
-  import { FolderIcon } from '@vue-hero-icons/solid';
   import { mapGetters } from 'vuex';
 
   export default {
     components: {
-      FolderIcon,
       XIcon,
     },
 

@@ -3,18 +3,20 @@
     class="absolute bottom-4 left-0 right-0 flex justify-center"
   >
     <div
-      class="bg-gray-500 bg-opacity-20 backdrop-filter backdrop-blur-2xl p-4 rounded-xl shadow-2xl flex space-x-2"
+      class="bg-gray-500 bg-opacity-20 backdrop-filter backdrop-blur-2xl px-6 py-4 rounded-xl shadow-2xl flex space-x-4"
     >
       <!-- Explorer -->
-      <div class="relative group">
+      <div
+        class="relative group flex flex-col items-center justify-center"
+      >
         <div
           class="absolute -top-14 transform -translate-x-3 px-3 py-1 rounded-md bg-gray-500 bg-opacity-20 backdrop-filter backdrop-blur-2xl text-white text-sm hidden group-hover:block"
         >
           Explorer
         </div>
         <img
-          class="w-14 h-14 cursor-pointer transform hover:scale-105 transition-transform duration-100"
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png"
+          class="h-10 cursor-pointer transform hover:scale-105 transition-transform duration-100"
+          src="/explorer.png"
           alt="Explorer Logo"
           @click="onClickExplorer"
         />
@@ -31,7 +33,7 @@
           Repository
         </div>
         <img
-          class="p-1 w-14 h-14 cursor-pointer transform hover:scale-105 transition-transform duration-100"
+          class="h-12 cursor-pointer transform hover:scale-105 transition-transform duration-100"
           src="/github.png"
           alt="Explorer Logo"
           @click="onClickRepository"

@@ -23,8 +23,8 @@
         ]"
         @click="onClickTab(tab)"
       >
-        <div class="flex items-center space-x-1.5">
-          <FolderIcon class="w-4 h-4" />
+        <div class="flex items-center space-x-2">
+          <img class="h-3.5 w-3.5" src="/folder.png" />
           <span v-text="tab.label"></span>
         </div>
         <!-- <XIcon
@@ -36,7 +36,7 @@
 
       <!-- New Tab -->
       <div
-        class="px-4 py-2 flex items-center space-x-1.5 text-xs rounded-md hover:bg-gray-700 hover:bg-opacity-50"
+        class="px-4 py-2 flex items-center space-x-2 text-xs rounded-md hover:bg-gray-700 hover:bg-opacity-50"
         @click="onClickAddTab"
       >
         <PlusIcon class="w-4 h-4" />
@@ -51,7 +51,6 @@
 
   import ClickOutside from 'vue-click-outside';
 
-  import { FolderIcon } from '@vue-hero-icons/solid';
   import {
     CollectionIcon,
     PlusIcon,
@@ -63,7 +62,6 @@
 
   export default {
     components: {
-      FolderIcon,
       CollectionIcon,
       PlusIcon,
       // XIcon,

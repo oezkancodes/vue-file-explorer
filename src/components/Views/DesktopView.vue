@@ -15,10 +15,8 @@
           class="hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70 rounded-md m-2 text-sm cursor-pointer"
           @click="onClickRow(row)"
         >
-          <td
-            class="p-2 pl-6 flex items-center space-x-1.5"
-          >
-            <component :is="row.iconComponent" />
+          <td class="p-2 pl-6 flex items-center space-x-2">
+            <img class="h-4 w-4" :src="row.icon" />
             <span v-text="row.name" />
           </td>
           <td class="p-2">
@@ -40,17 +38,13 @@
 
 <script>
   import {
-    PhotographIcon,
     CheckCircleIcon,
-    DocumentIcon,
     CloudIcon,
   } from '@vue-hero-icons/solid';
 
   export default {
     components: {
-      PhotographIcon,
       CheckCircleIcon,
-      DocumentIcon,
       CloudIcon,
     },
 
@@ -58,38 +52,38 @@
       return {
         rows: [
           {
-            name: '#01.1 Themenvorschlag Interaktive Datenvisualisierung',
+            name: '01.1 Themenvorschlag Interaktive Datenvisualisierung',
             type: 'PDF',
             stream: true,
-            iconComponent: 'DocumentIcon',
+            icon: '/pdf.png',
             to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/01-User_Experience_Design/Themenvorschlag.pdf',
           },
           {
-            name: '#01.2 Moodboard Interaktive Datenvisualisierung',
+            name: '01.2 Moodboard Interaktive Datenvisualisierung',
             type: 'PDF',
             stream: true,
-            iconComponent: 'DocumentIcon',
+            icon: '/pdf.png',
             to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/01-User_Experience_Design/Moodboard.pdf',
           },
           {
-            name: '#02 Low-Fid Prototype',
+            name: '02 Low-Fid Prototype',
             type: 'PNG',
             stream: true,
-            iconComponent: 'PhotographIcon',
+            icon: '/image.png',
             to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/02-Prototyping/low-fid-prototype.png',
           },
           {
             name: 'Wallpaper',
             type: 'JPEG',
             stream: false,
-            iconComponent: 'PhotographIcon',
+            icon: '/image.png',
             to: '/background.jpg',
           },
           {
-            name: '#07 User Test',
+            name: '07 User Test',
             type: 'PDF',
             stream: true,
-            iconComponent: 'DocumentIcon',
+            icon: '/pdf.png',
             to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/07-User_Testing/User_Testing.pdf',
           },
         ],

@@ -6,13 +6,13 @@
         <div
           ref="button"
           tabindex="0"
-          class="px-8 py-3 border border-gray-700 bg-gray-500 bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-25 rounded-md transition duration-100 flex flex-col items-center space-y-1"
+          class="px-8 py-3 border border-gray-700 bg-gray-500 bg-opacity-20 hover:bg-opacity-30 focus:bg-opacity-25 rounded-md transition duration-100 flex flex-col items-center space-y-2"
           @click="
             $refs.button.blur();
             onClickDesktop();
           "
         >
-          <FolderIcon class="w-12 h-12" />
+          <img class="h-8" src="/folder.png" />
           <span class="text-sm">Desktop</span>
         </div>
       </div>
@@ -29,7 +29,7 @@
             onClickDesktop();
           "
         >
-          <FolderIcon class="w-12 h-12" />
+          <img class="h-8" src="/folder.png" />
           <span class="text-sm">Desktop</span>
         </div>
         <div
@@ -41,7 +41,7 @@
             onClickCloud();
           "
         >
-          <CloudIcon class="w-12 h-12" />
+          <img class="h-8" src="/folder.png" />
           <span class="text-sm">OneDrive</span>
         </div>
       </div>
@@ -50,19 +50,9 @@
 </template>
 
 <script>
-  import {
-    FolderIcon,
-    CloudIcon,
-  } from '@vue-hero-icons/solid';
-
   import { mapGetters } from 'vuex';
 
   export default {
-    components: {
-      FolderIcon,
-      CloudIcon,
-    },
-
     computed: {
       ...mapGetters(['tabs', 'activeTab']),
     },

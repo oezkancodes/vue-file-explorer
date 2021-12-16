@@ -9,10 +9,7 @@
       @click="onClickItem(item)"
     >
       <div class="flex items-center space-x-2">
-        <component
-          :is="item.iconComponent || 'FolderIcon'"
-          class="w-4 h-4"
-        />
+        <img :src="item.icon" class="h-3.5 w-3.5" />
         <span v-text="item.label" />
       </div>
 
@@ -34,7 +31,7 @@
         }"
         @click="onClickSubItem(subItem, index)"
       >
-        <FolderIcon class="w-4 h-4" />
+        <img :src="subItem.icon" class="h-3.5 w-3.5" />
         <span v-text="subItem.label" />
       </button>
     </div>
@@ -42,20 +39,10 @@
 </template>
 
 <script>
-  import {
-    StarIcon,
-    CloudIcon,
-    FolderIcon,
-    HomeIcon,
-    ChevronDownIcon,
-  } from '@vue-hero-icons/solid';
+  import { ChevronDownIcon } from '@vue-hero-icons/solid';
 
   export default {
     components: {
-      StarIcon,
-      CloudIcon,
-      FolderIcon,
-      HomeIcon,
       ChevronDownIcon,
     },
 
