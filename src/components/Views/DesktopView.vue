@@ -86,6 +86,13 @@
             icon: '/pdf.png',
             to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/07-User_Testing/User_Testing.pdf',
           },
+          {
+            name: '08 Dokumentation',
+            type: 'PDF',
+            stream: true,
+            icon: '/pdf.png',
+            to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/08-Prototype_Enhancement/Dokuementation.pdf',
+          },
         ],
       };
     },
