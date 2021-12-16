@@ -91,7 +91,7 @@
             type: 'PDF',
             stream: true,
             icon: '/pdf.png',
-            to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/08-Prototype_Enhancement/Dokuementation.pdf',
+            to: 'https://github.com/oezkancodes/IFD/blob/main/Aufgaben/08-Prototype_Enhancement/Dokumentation.pdf',
           },
         ],
       };
