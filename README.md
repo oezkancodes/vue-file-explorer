@@ -10,6 +10,6 @@ Basiert auf:
 
 - [01.1 Themenvorschlag Interaktive Datenvisualisierung](https://github.com/oezkancodes/IFD/blob/main/Aufgaben/01-User_Experience_Design/Themenvorschlag.pdf)
 - [01.2 Moodboard Interaktive Datenvisualisierung](https://github.com/oezkancodes/IFD/blob/main/Aufgaben/01-User_Experience_Design/Moodboard.pdf)
-- Vorläufiger Prototyp auf Basis von React - [Live Demo](https://react-file-explore-ifd.netlify.app/) | [Repository](https://github.com/oezkancodes/react-file-explorer)
+- Vorläufiger Prototyp auf Basis von React - [Live Demo](https://react-file-explorer-ifd.netlify.app/) | [Repository](https://github.com/oezkancodes/react-file-explorer)
 
 Für mehr Informationen siehe [IFD Repo](https://github.com/oezkancodes/IFD) mit allen Aufgaben des Moduls.
