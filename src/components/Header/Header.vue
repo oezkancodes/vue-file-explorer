@@ -49,10 +49,10 @@
       class="pl-2 pr-2 pb-2 flex space-x-2 items-center justify-between"
     >
       <section class="space-x-1">
-        <HeaderButton>
+        <HeaderButton disabled>
           <ArrowLeftIcon />
         </HeaderButton>
-        <HeaderButton>
+        <HeaderButton disabled>
           <ArrowRightIcon />
         </HeaderButton>
         <HeaderButton
@@ -66,7 +66,7 @@
         >
           <ArrowUpIcon />
         </HeaderButton>
-        <HeaderButton>
+        <HeaderButton disabled>
           <RefreshIcon />
         </HeaderButton>
       </section>
