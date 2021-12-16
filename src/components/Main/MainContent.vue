@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full flex flex-col">
     <MainContentHeader />
     <Component :is="tabs[activeTab].view" />
   </div>
