@@ -24,9 +24,7 @@
           </HeaderButton>
 
           <!-- Tab Dropdown -->
-          <HeaderButton>
-            <CollectionIcon />
-          </HeaderButton>
+          <HeaderTabManagement />
         </div>
 
         <div class="flex self-start space-x-1">
@@ -98,6 +96,7 @@
 
   import HeaderButton from './HeaderButton.vue';
   import HeaderTabItem from './HeaderTabItem.vue';
+  import HeaderTabManagement from './HeaderTabManagement.vue';
 
   import {
     PlusIcon,
@@ -107,7 +106,6 @@
     RefreshIcon,
     MinusIcon,
     XIcon,
-    CollectionIcon,
   } from '@vue-hero-icons/outline';
 
   export default {
@@ -121,8 +119,8 @@
       RefreshIcon,
       MinusIcon,
       XIcon,
-      CollectionIcon,
       SearchIcon,
+      HeaderTabManagement,
     },
 
     computed: {

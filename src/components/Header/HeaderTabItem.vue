@@ -23,7 +23,7 @@
     <div
       v-if="tabs.length > 1"
       class="p-2"
-      @click="onClickClose"
+      @click="onClickCloseTab"
     >
       <XIcon
         class="w-4 h-4 opacity-0 group-hover:opacity-100 transition duration-100"
@@ -72,7 +72,7 @@
         this.$store.commit('SET_ACTIVE_TAB', index);
       },
 
-      onClickClose() {
+      onClickCloseTab() {
         const tabs = this.tabs.filter(
           (tab) => tab.uid !== this.tab.uid
         );
