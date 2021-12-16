@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-gray-800 space-y-2 border-b border-gray-700"
+    class="bg-gray-800 space-y-2 border-b border-gray-700 rounded-t-md"
   >
     <!-- Primary Row -->
     <div>
