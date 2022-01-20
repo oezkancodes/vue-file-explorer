@@ -58,6 +58,7 @@
     SearchIcon,
     MicrophoneIcon,
   } from '@vue-hero-icons/outline';
+  import { mapGetters } from 'vuex';
 
   export default {
     directives: {
@@ -71,7 +72,6 @@
 
     data() {
       return {
-        kalmiya: false,
         focus: false,
         input: '',
         items: [
@@ -130,6 +130,8 @@
     },
 
     computed: {
+      ...mapGetters(['kalmiya']),
+
       results() {
         return this.items.filter((item) => {
           return item.name
@@ -150,12 +152,16 @@
         audio.play();
       },
 
-      onClickKalmiya() {
-        if (this.kalmiya === false) {
+      async onClickKalmiya() {
+        if (!this.kalmiya) {
+          this.input = '';
+          this.focus = false;
+          this.$refs.input.blur();
+
           let timeout;
 
           this.playSound();
-          this.kalmiya = true;
+          this.$store.commit('SET_KALMIYA', true);
           const SpeechRecognition =
             window.SpeechRecognition ||
             window.webkitSpeechRecognition;
@@ -170,24 +176,34 @@
               this.kalmiyaSeech(
                 'Leider habe ich dich nicht verstanden.'
               );
-              this.kalmiya = false;
+              this.$store.commit('SET_KALMIYA', false);
               recognition.stop();
             }
           }, 5000);
 
           recognition.onresult = (event) => {
-            this.kalmiyaSeech(
-              'Suche nach ' + event.results[0][0].transcript
+            const transcript =
+              event.results[0][0].transcript;
+            const results = this.items.filter((item) =>
+              item.name
+                .toLowerCase()
+                .includes(transcript.toLowerCase())
             );
-            this.input = event.results[0][0].transcript;
-            console.log(event);
-            this.$refs.input.click();
+            if (results.length > 0) {
+              this.kalmiyaSeech('Suche nach ' + transcript);
+              this.input = transcript;
+              this.$refs.input.click();
+            } else {
+              this.kalmiyaSeech(
+                'Keine Ergebnisse für ' + transcript
+              );
+            }
           };
 
           recognition.onspeechend = () => {
             this.playSound();
             clearTimeout(timeout);
-            this.kalmiya = false;
+            this.$store.commit('SET_KALMIYA', false);
             recognition.stop();
           };
         }

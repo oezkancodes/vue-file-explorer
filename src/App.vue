@@ -5,16 +5,31 @@
   >
     <Explorer />
     <Dock />
+    <Kalmiya />
   </main>
 </template>
 
 <script>
   import Dock from './components/Dock.vue';
   import Explorer from './components/Explorer.vue';
+  import Kalmiya from './components/Kalmiya.vue';
 
   export default {
     name: 'App',
-    components: { Explorer, Dock },
+    components: { Explorer, Dock, Kalmiya },
+
+    mounted() {
+      this.getLocalStream();
+    },
+
+    methods: {
+      getLocalStream() {
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then(function () {})
+          .catch(function () {});
+      },
+    },
   };
 </script>
 

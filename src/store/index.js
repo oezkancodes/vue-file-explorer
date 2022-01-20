@@ -10,6 +10,7 @@ export default new Vuex.Store({
     ],
     activeTab: 0,
     minimized: false,
+    kalmiya: false,
   },
 
   getters: {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     activeTab: (state) => state.activeTab,
     currentTab: (state) => state.tabs[state.activeTab],
     minimized: (state) => state.minimized,
+    kalmiya: (state) => state.kalmiya,
   },
 
   mutations: {
@@ -32,6 +34,9 @@ export default new Vuex.Store({
     },
     SET_MINIMIZED(state, bool) {
       state.minimized = bool;
+    },
+    SET_KALMIYA(state, bool) {
+      state.kalmiya = bool;
     },
   },
 
