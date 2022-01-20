@@ -38,16 +38,6 @@
         </component>
       </div>
     </div>
-
-    <button
-      class="p-2 rounded-md transition duration-100 hover:bg-gray-600 hover:bg-opacity-25 focus:opacity-70"
-      @click="onClickKalmiya"
-    >
-      <MicrophoneIcon
-        class="w-4 h-4"
-        :class="{ 'animate-pulse text-blue-400': kalmiya }"
-      />
-    </button>
   </div>
 </template>
 
@@ -71,7 +61,6 @@
 
     data() {
       return {
-        kalmiya: false,
         focus: false,
         input: '',
         items: [
@@ -145,64 +134,6 @@
     },
 
     methods: {
-      playSound() {
-        const audio = new Audio('/kalmiya-sound.mp3');
-        audio.play();
-      },
-
-      onClickKalmiya() {
-        if (this.kalmiya === false) {
-          let timeout;
-
-          this.playSound();
-          this.kalmiya = true;
-          const SpeechRecognition =
-            window.SpeechRecognition ||
-            window.webkitSpeechRecognition;
-
-          const recognition = new SpeechRecognition();
-          recognition.lang = 'de-DE';
-
-          recognition.start();
-
-          timeout = setTimeout(() => {
-            if (this.kalmiya) {
-              this.kalmiyaSeech(
-                'Leider habe ich dich nicht verstanden.'
-              );
-              this.kalmiya = false;
-              recognition.stop();
-            }
-          }, 5000);
-
-          recognition.onresult = (event) => {
-            this.kalmiyaSeech(
-              'Suche nach ' + event.results[0][0].transcript
-            );
-            this.input = event.results[0][0].transcript;
-            console.log(event);
-            this.$refs.input.click();
-          };
-
-          recognition.onspeechend = () => {
-            this.playSound();
-            clearTimeout(timeout);
-            this.kalmiya = false;
-            recognition.stop();
-          };
-        }
-      },
-
-      kalmiyaSeech(text) {
-        const speech = new SpeechSynthesisUtterance();
-        speech.volume = 1;
-        speech.rate = 1;
-        speech.pitch = 1;
-        speech.text = text;
-
-        window.speechSynthesis.speak(speech);
-      },
-
       onClickResult(result) {
         this.input = '';
         this.blur();
