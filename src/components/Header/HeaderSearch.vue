@@ -52,6 +52,7 @@
 </template>
 
 <script>
+  import { v4 as uuidv4 } from 'uuid';
   import ClickOutside from 'vue-click-outside';
 
   import {
@@ -130,7 +131,7 @@
     },
 
     computed: {
-      ...mapGetters(['kalmiya']),
+      ...mapGetters(['kalmiya', 'tabs', 'activeTab']),
 
       results() {
         return this.items.filter((item) => {
@@ -172,39 +173,100 @@
           recognition.start();
 
           timeout = setTimeout(() => {
-            if (this.kalmiya) {
-              this.kalmiyaSeech(
-                'Leider habe ich dich nicht verstanden.'
-              );
-              this.$store.commit('SET_KALMIYA', false);
-              recognition.stop();
-            }
+            this.$store.commit('SET_KALMIYA', false);
+            recognition.stop();
           }, 5000);
 
           recognition.onresult = (event) => {
-            const transcript =
-              event.results[0][0].transcript;
-            const results = this.items.filter((item) =>
-              item.name
-                .toLowerCase()
-                .includes(transcript.toLowerCase())
-            );
-            if (results.length > 0) {
-              this.kalmiyaSeech('Suche nach ' + transcript);
-              this.input = transcript;
-              this.$refs.input.click();
-            } else {
-              this.kalmiyaSeech(
-                'Keine Ergebnisse für ' + transcript
-              );
-            }
-          };
-
-          recognition.onspeechend = () => {
-            this.playSound();
             clearTimeout(timeout);
             this.$store.commit('SET_KALMIYA', false);
-            recognition.stop();
+
+            const transcript =
+              event.results[0][0].transcript.toLowerCase();
+            // Open Folder
+
+            if (
+              transcript === 'öffne home in einem neuen tab'
+            ) {
+              this.kalmiyaSeech(
+                'Home in einem neuen Tab geöffnet.'
+              );
+              this.$store.commit('SET_TAB', {
+                uid: uuidv4(),
+                label: 'Home',
+                view: 'home-view',
+              });
+            } else if (transcript === 'öffne home') {
+              this.kalmiyaSeech('Home geöffnet.');
+              this.$store.dispatch('updateTab', {
+                label: 'Home',
+                view: 'home-view',
+              });
+            } else if (transcript === 'öffne desktop') {
+              this.kalmiyaSeech('Desktop geöffnet.');
+              this.$store.dispatch('updateTab', {
+                label: 'Desktop',
+                view: 'desktop-view',
+              });
+            } else if (
+              transcript ===
+              'öffne desktop in einem neuen tab'
+            ) {
+              this.kalmiyaSeech(
+                'Desktop in einem neuen Tab geöffnet.'
+              );
+              this.$store.commit('SET_TAB', {
+                uid: uuidv4(),
+                label: 'Desktop',
+                view: 'desktop-view',
+              });
+            } else if (transcript === 'schließe tab') {
+              if (this.tabs.length > 1) {
+                const tabs = this.tabs.filter(
+                  (tab) =>
+                    tab.uid !==
+                    this.tabs[this.activeTab].uid
+                );
+                this.$store.commit('SET_TABS', tabs);
+                this.$store.commit('SET_ACTIVE_TAB', 0);
+                this.kalmiyaSeech('Tab geschlossen.');
+              } else {
+                this.kalmiyaSeech('Nur ein Tab vorhanden.');
+              }
+            } else if (transcript.includes('suche nach')) {
+              const filteredTranscript = transcript
+                .split('suche nach')[1]
+                .replace(' ', '');
+              const results = this.items.filter((item) =>
+                item.name
+                  .toLowerCase()
+                  .includes(filteredTranscript)
+              );
+              if (
+                results.length > 0 &&
+                filteredTranscript.length > 0
+              ) {
+                this.kalmiyaSeech(
+                  'Suche nach ' + filteredTranscript
+                );
+                this.input = filteredTranscript;
+                this.$refs.input.click();
+              } else {
+                this.kalmiyaSeech(
+                  'Keine Ergebnisse gefunden.'
+                );
+              }
+            } else {
+              this.kalmiyaSeech(
+                'Ich habe dich leider nicht verstanden.'
+              );
+            }
+
+            recognition.onspeechend = () => {
+              this.playSound();
+
+              recognition.stop();
+            };
           };
         }
       },
